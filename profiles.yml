@@ -1,0 +1,8 @@
+# Local DuckDB profile - no credentials required. dbt looks here because of DBT_PROFILES_DIR=. (see README).
+workforce_kpis:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: workforce_kpis.duckdb
+      threads: 4

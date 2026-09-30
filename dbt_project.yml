@@ -1,0 +1,27 @@
+name: workforce_kpis
+version: "1.0.0"
+config-version: 2
+profile: workforce_kpis
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  workforce_kpis:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+
+seeds:
+  workforce_kpis:
+    +schema: raw
+    raw_shifts:
+      +column_types:
+        shift_date: date

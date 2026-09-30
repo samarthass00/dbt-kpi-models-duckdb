@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fct_labor_daily
+    description: >
+      Daily labor productivity by facility and department. productivity_index = earned standard
+      minutes / worked minutes (1.0 = working exactly at standard).
+    data_tests:
+      - unique_combination_of:
+          arguments:
+            columns: ["shift_date", "facility_code", "department_code"]
+    columns:
+      - name: worked_hours
+        description: Actual hours worked.
+        data_tests: [not_null]
+      - name: productivity_index
+        description: Earned minutes / worked minutes.
+      - name: overtime_rate
+        description: Overtime hours / worked hours.
+
+  - name: fct_labor_monthly
+    description: Monthly roll-up of fct_labor_daily; ratios recomputed from sums.
